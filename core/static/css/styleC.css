@@ -1,0 +1,22 @@
+label {
+    clear: both;
+    float: left;
+    width: 180px;
+}
+
+button{
+    clear: both;
+    float: left;
+}
+
+.error-control {
+    border: 1px solid red;
+}
+
+label.error {
+    color: red;
+    width: 300px;
+    font-size: 0.8em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Friends</title>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleC.css' %}">
+    <script src="{% static 'js/app.js' %}"></script>
+    <link rel="icon" href="{% static 'img/logo.png' %}" class="rounded-circle"/>
+<style>
+body {
+    font-family: Arial;
+  }
+.error-control {
+    border: 1px solid red;
+}
+label.error {
+    color: red;
+    width: 200px;
+    font-size: 0.8em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}  
+</style>
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-sm navbar-light ">
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="navbar-brand">
+      <img class="rounded-circle" src="{% static 'img/logo.png' %}" width="60" height="60" alt="">
+    </div>
+   
+    
+    <div class="collapse navbar-collapse" id="opciones">   
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a id="navL" class="nav-link" href="{% url 'index' %}">Principal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'somos' %}">Quienes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'galeria'%}">Galeria</a>
+        
+         <li class="nav-item">
+            <a class="nav-link" id="navL"  href="{% url 'contacto' %}">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'mapa' %}">Encuentranos acá</a>
+        </li>
+        
+        <li class="nav-item">
+            {% if perms.core.view_productos_animal %}
+            <a href="{% url 'mostrar' %}" class="nav-link"  style="color: red;">Mostrar Productos </a>
+          </li>
+            {% endif %}
+          
+          
+        
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}"  class="nav-link"  style="color: red; ">Cerrar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" style="color:blue;" >Bienvenid@ {{user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <li class="nav-item">
+              <a href="/mycart" class="nav-link btn btn-success" style="color:blue;" >🛒 {{request.session.data.count}} Item {{request.session.data.count|pluralize}} </a>
+            </li>
+          {% else %}
+          <a href="{% url 'login' %}" class="me-4 text-reset">
+            <svg xmlns="http://www.w3.org/2000/svg"  style="margin-top: 5px; "width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </a>
+          
+          {% endif %}
+        </li>
+         
+          
+          
+      </li>
+      
+                  
+      </ul>
+    </div>
+  </nav>
+  <!--Termina Nav-->
+
+  <div class="container">
+    <div class="row">
+        <h2>Creando Productos</h2>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="row">
+            <form method="POST" action="#" enctype="multipart/form-data" id="validacion">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ producto_form.codigo.label }}
+                    {{ producto_form.codigo}}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.nombre.label }}
+                    {{ producto_form.nombre }}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.marca.label }}
+                    {{ producto_form.marca }}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.imagen.label }}
+                    {{ producto_form.imagen }}
+                </div>
+                <div class="form-group">
+                  {{ producto_form.precio.label }}
+                  {{ producto_form.precio }}
+              </div>
+
+                <div class="form-group">
+                    {{ producto_form.categoria.label }}
+                    {{ producto_form.categoria }}
+                </div>
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-md">
+
+                        <input type="submit" class="btn btn-primary" value="Enviar">
+                        <input type="reset" class="btn btn-danger" value="Limpiar">
+                        
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+    {% else %}
+        <br><br><br><br>
+        <h2 style="color:red; text-align:center">No tiene permisos para Agregar Productos</h2>    
+    {% endif %}
+</div>
+
+     
+  <!--Empieza footer -->
+  <footer class="text-center">  
+        <div class="container-fluid">   
+          <div class="justify-content-center  ">
+          <p id="nombre" class="me-5" ><br>•Axel Muñoz •Maximiliano Urbina<p>
+          
+              <div id="logo" class="text-center">
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+        </div>
+          <!-- Copyright -->
+          <div class="text-center p-3" id="copy">©Copyright Derechos reservados</div>
+        </footer>
+
+    
+</body>
+</html>

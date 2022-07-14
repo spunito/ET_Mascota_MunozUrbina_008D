@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  
+  {% for item in productos %}
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+  
+    <div class=" col-lg-4 mb-4">
+      
+      <div class="card h-100 border-dark" >
+          <a href="{% url 'detail' item.slug %}"><img src="{{item.imagen.url}}" class="card-img-top" alt=""></a>
+          <div class="card-body text-dark">
+            <h4 class="card-title">{{item.nombre}}</h4> <hr>
+            <h5>${{item.precio}}</h5>
+            <p class="card-text">{{item.marca}}</p>
+          </div>
+          <div class="card-footer">
+              <small class="text-muted text-center"><a href="{% url 'cart' item.slug %}" class="btn btn-success ">Agregar al carro</a></small>
+          </div>
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+    {% endfor %}
+{% endblock %}

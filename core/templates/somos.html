@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet Friends</title>
+
+        <script src="https://kit.fontawesome.com/a98d2ff4b7.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        
+        
+        {% load static %}
+        <link rel="icon" href="{% static 'img/logo.png' %}" class="rounded-circle"/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/somosStyles.css' %}">
+    </head>
+
+<body>
+  <nav id="nav" class="navbar navbar-expand-sm navbar-light ">
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="navbar-brand">
+      <img class="rounded-circle" src="{% static 'img/logo.png' %}" width="60" height="60" alt="">
+    </div>
+   
+    
+    <div class="collapse navbar-collapse" id="opciones">   
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a id="navL" class="nav-link" href="{% url 'index' %}">Principal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'somos' %}">Quienes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'galeria'%}">Galeria</a>
+        
+         <li class="nav-item">
+            <a class="nav-link" id="navL"  href="{% url 'contacto' %}">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'mapa' %}">Encuentranos acá</a>
+        </li>
+        
+        <li class="nav-item">
+            {% if perms.core.view_productos_animal %}
+            <a href="{% url 'mostrar' %}" class="nav-link"  style="color: red;">Mostrar Productos </a>
+          </li>
+            {% endif %}
+          
+          
+        
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}"  class="nav-link"  style="color: red; ">Cerrar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" style="color:blue;" >Bienvenid@ {{user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <li class="nav-item">
+              <a href="/mycart" class="nav-link btn btn-success" style="color:blue;" >🛒 {{request.session.data.count}} Item {{request.session.data.count|pluralize}} </a>
+            </li>
+          {% else %}
+          <a href="{% url 'login' %}" class="me-4 text-reset">
+            <svg xmlns="http://www.w3.org/2000/svg"  style="margin-top: 5px; "width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </a>
+          
+          {% endif %}
+        </li>
+         
+          
+          
+      </li>
+      
+                  
+      </ul>
+    </div>
+  </nav>
+      <div class="container"> 
+        <div class="row">
+          <img src="{% static 'img/logo.png' %}" alt=""  class="col-md-4" id="logo">
+          <p class="col-md-8" id="textP" > Somos una pequeña pyme de mujeres emprendedoras que 
+            vimos la necesidad de apoyar a una fundación "Buscamos casita" que conmovio realmente  
+            y nos sentimos comprometidas con su causa y su misión como fundación que decidimos aportar 
+            con esta tienda 100% sin fines de lucro todo para poder ayudar a nuestros queridos peludos 
+            favoritos :3  </p> 
+          </div> <hr> 
+          <div class="row">
+          <p class="col-md-8" id="textP1">  La fundación "buscamos casita" busca Promover
+             el bienestar animal y la tenencia responsable, a través de la implementación de actividades de rescate,
+              rehabilitación, adopción y educación en temáticas relacionadas con el cuidado y mantención de mascotas</p>
+          <img src="{% static 'img/logo2.png' %}" alt=""  class="col-md-4" id="logo">
+        </div>
+        <hr>
+      <div class="row col-md-12">
+
+      <iframe  width="1077" height="480"  src="https://www.youtube.com/embed/HerE6AnfEFA" 
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+      encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+      
+      </div>
+        <footer class="text-center">  
+            <div class="container-fluid">   
+              <div class="justify-content-center  ">
+              <p id="nombre" class="me-5" ><br>•Axel Muñoz •Maximiliano Urbina<p>
+              
+                  <div id="logo" class="text-center">
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                  </div>
+                </div>
+            </div>
+              <!-- Copyright -->
+              <div class="text-center p-3" id="copy">©Copyright Derechos reservados</div>
+            </footer>
+            
+          
+        
+
+      
+      
+          
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>      
+</body>
+</html>

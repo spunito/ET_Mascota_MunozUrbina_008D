@@ -1,0 +1,79 @@
+
+footer{
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-top: 50px;    
+    bottom: auto;
+    display:block;
+
+}
+body{
+    background-color: rgb(240, 240, 240);
+}
+
+#nav{
+    background-color: #5B4282 ;
+    margin-bottom: 25px;
+}
+#carT
+{
+    margin:40px 10px 5px 10px;
+
+}
+#navL{
+    color:white;
+}
+
+#navL:hover{
+    color:gray;
+}
+
+#navM{
+    color:red;
+}
+
+#navM:hover{
+    color:rgb(107, 9, 9);
+}
+
+#nombre{
+    margin-left:20px;
+    
+}
+#copy
+{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#sl{
+    margin-left: 0%;
+    text-align: center;
+}
+#fot{
+    text-align: left;
+}
+
+.reloj { 
+    border: 1px solid black;
+    padding: 3px;
+    float: right; 
+    }
+.table__producto{
+    
+}
+.table__productos > img{
+    width: 9rem;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-right: 20px;
+    display: flex;
+}
+#table__cantidad > input{
+    width: 40px;
+    border: none;
+    outline: 0;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 30px;
+    margin-bottom: 20px;
+
+}

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% block content%}
+{% load static %}
+  <h1 class="text-center">Carrito de compra</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">Nombre</th>
+        <th scope="col">marca</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in products %}
+      <tr>
+        <th>{{item.nombre}}</th>
+        <td>{{item.marca}}</td>
+        <td>{{item.precio}}</td>
+        {% if item.imagen %}
+        <td><img src="{{item.imagen.url}}" width="140" height="140" alt=""> </td>
+    {% else %}
+        <td><img src="{% static 'img/error.jpeg' %}" width="140" height="140" alt=""> </td>
+    {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button class="btn btn-success"><a href="{% url 'exitosa' %}">PAGAR</a></button>
+  
+  
+ 
+{% endblock%}
+
+
+
+     
+ 

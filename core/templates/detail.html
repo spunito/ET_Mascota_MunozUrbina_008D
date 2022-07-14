@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% block content %}   
+  <div class="row">
+        <div class="col-md-4" >
+
+            <img src="{{product.imagen.url}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-sm-8">
+            <h3 class="my-3">{{product.nombre}}</h3>
+            <p>{{product.descripcion}}</p>
+            <h3 class="my-3">Producto Detalles</h3>
+                <ul>
+                        <li>Marca: {{product.marca}}</li>
+                        <li>Precio : {{product.precio}}</li>
+                        
+                </ul>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="{% url 'cart' product.slug%}" class="btn btn-success">adicionar al carro</a></small>
+                </div>
+        </div>
+
+  </div>
+
+{% endblock%}
+
+
+
